@@ -4,27 +4,43 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            Simplify Your Cloud Management
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-            Take control of your cloud infrastructure with CloudLiness. Monitor, optimize, and manage all your cloud resources in one place.
-          </p>
-          <div className="flex justify-center gap-4">
-            <a
-              href="/schedule"
-              className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              Get Started
-            </a>
-            <a
-              href="/pricing"
-              className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-8 py-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            >
-              View Pricing
-            </a>
+      <section className="relative py-20 px-4">
+        <div className="container mx-auto text-center relative z-10">
+          {/* Hero Image */}
+          <div className="absolute inset-0 -z-10 opacity-50">
+            <div className="relative w-full h-[600px] mx-auto">
+              <Image
+                src="/images/home/placeholder-hero.jpg"
+                alt="Cloud Management Dashboard"
+                fill
+                className="object-cover rounded-xl"
+                priority
+              />
+            </div>
+          </div>
+          
+          {/* Content overlay */}
+          <div className="bg-white/80 dark:bg-black/80 p-8 rounded-xl backdrop-blur-sm">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+              Simplify Your Cloud Management
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+              Take control of your cloud infrastructure with CloudLiness. Monitor, optimize, and manage all your cloud resources in one place.
+            </p>
+            <div className="flex justify-center gap-4">
+              <a
+                href="/schedule"
+                className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Get Started
+              </a>
+              <a
+                href="/pricing"
+                className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-8 py-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                View Pricing
+              </a>
+            </div>
           </div>
         </div>
       </section>
