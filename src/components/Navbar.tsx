@@ -12,6 +12,18 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const menuItems = [
+    { href: '/about', label: 'About Us' },
+    { href: '/features', label: 'Features' },
+    { href: '/schedule', label: 'Schedule' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
   const ThemeToggleButton = () => {
     const currentTheme = resolvedTheme || theme;
     
@@ -49,7 +61,13 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-4">
             <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-              About
+              About Us
+            </Link>
+            <Link href="/features" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              Features
+            </Link>
+            <Link href="/schedule" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              Schedule
             </Link>
             <Link href="/pricing" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Pricing
@@ -90,28 +108,28 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link href="/about" className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">
-              About
+      {/* Mobile Navigation */}
+      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg`}>
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          {menuItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              {item.label}
             </Link>
-            <Link href="/pricing" className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">
-              Pricing
-            </Link>
-            <Link href="/contact" className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">
-              Contact
-            </Link>
-            <Link href="/login" className="block bg-blue-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700 mt-4">
-              Sign In
-            </Link>
-            <Link href="/register" className="block bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
-              Sign Up
-            </Link>
-          </div>
+          ))}
+          <Link
+            href="/login"
+            onClick={closeMenu}
+            className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 rounded-md transition-colors duration-200"
+          >
+            Sign in
+          </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
